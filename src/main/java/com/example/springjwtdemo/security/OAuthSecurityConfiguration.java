@@ -31,6 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
 public class OAuthSecurityConfiguration {
+
     @Bean
     public SecurityFilterChain customSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl) requests.anyRequest()).authenticated());
