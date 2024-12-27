@@ -1,5 +1,6 @@
 package com.example.springjwtdemo.security;
 
+import com.example.springjwtdemo.pojo.Roles;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.KeySourceException;
 import com.nimbusds.jose.jwk.JWK;
@@ -10,6 +11,7 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Role;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -46,7 +48,7 @@ public class OAuthSecurityConfiguration {
         UserDetails user1 = User.builder()
                 .username("user").
                 password("{noop}password").
-                roles("user")
+                roles(String.valueOf(Roles.DEV), String.valueOf(Roles.ADMIN))
                 .build();
         return new InMemoryUserDetailsManager(user1);
     }
